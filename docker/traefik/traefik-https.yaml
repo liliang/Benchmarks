@@ -1,6 +1,8 @@
 entryPoints:
   web:
     address: :8080
+    http:
+      tls: {}
 
 providers:
   file:

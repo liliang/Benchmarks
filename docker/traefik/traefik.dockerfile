@@ -27,7 +27,12 @@ FROM base AS scheme-http-http-to-http-http
 
 # ARG SERVER_SCHEME 
 ADD traefik-http.yaml /etc/traefik/traefik.yaml
-ADD conf.d /etc/traefik/conf.d
+ADD downstream-http.yaml /etc/traefik/downstream.yaml
+
+FROM base AS scheme-https-http-to-https-http
+
+ADD traefik-https.yaml /etc/traefik/traefik.yaml
+ADD downstream-https.yaml /etc/traefik/downstream.yaml
 
 FROM scheme-${SERVER_SCHEME}-${SERVER_PROTOCOL}-to-${DOWNSTREAM_SCHEME}-${DOWNSTREAM_PROTOCOL} AS final
 
