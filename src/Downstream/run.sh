@@ -12,4 +12,4 @@ docker run \
     --network host \
     --restart always \
     benchmarks-downstream \
-    --urls http://*:5001
+    --urls https://*:8081
