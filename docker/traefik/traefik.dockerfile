@@ -10,14 +10,16 @@ ARG DOWNSTREAM_SCHEME=http
 # http, http2
 ARG DOWNSTREAM_PROTOCOL=http
 
-FROM traefik:latest AS base
+FROM traefik:v2.4 AS base
 
-ENV DOWNSTREAM_SCHEME http
 ENV DOWNSTREAM_ADDRESS localhost
 ENV DOWNSTREAM_PORT 8081
+ENV GODEBUG x509ignoreCN=0
 
 ADD testCert.crt /etc/testCert.crt
 ADD testCert.rsa /etc/testCert.key
+
+ADD testCert.crt /etc/ssl/certs/testCert.crt
 
 ADD run.sh /
 RUN chmod +x /run.sh

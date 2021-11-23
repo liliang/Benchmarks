@@ -10,16 +10,10 @@ http:
         servers:
         - url: "DOWNSTREAM_SCHEME://DOWNSTREAM_ADDRESS:DOWNSTREAM_PORT"
 
-
 tls:
   stores:
     default:
        defaultCertificate:
           certFile: /etc/testCert.crt
           keyFile:  /etc/testCert.key
-  options:
-    default:
-      minVersion: VersionTLS12
-    maxtls12:
-      minVersion: VersionTLS12
       
