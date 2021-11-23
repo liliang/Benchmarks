@@ -1,5 +1,5 @@
 http:
-  serverTransports:
+  serversTransports:
     mytransport:
       insecureSkipVerify: true
 
