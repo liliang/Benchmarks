@@ -16,8 +16,8 @@ ENV DOWNSTREAM_ADDRESS localhost
 ENV DOWNSTREAM_PORT 8081
 ENV GODEBUG x509ignoreCN=0
 
-ADD testCert.crt /etc/testCert.crt
-ADD testCert.rsa /etc/testCert.key
+#ADD testCert.crt /etc/testCert.crt
+#ADD testCert.rsa /etc/testCert.key
 
 ADD testCert.crt /etc/ssl/certs/testCert.crt
 
