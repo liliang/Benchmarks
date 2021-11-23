@@ -1,41 +1,34 @@
 # http, https
 ARG SERVER_SCHEME=http
 
-# http, http2
-ARG SERVER_PROTOCOL=http
-
-# http, https
-ARG DOWNSTREAM_SCHEME=http
-
-# http, http2
-ARG DOWNSTREAM_PROTOCOL=http
-
+# v2.4 is the latest version that honors the environment variable
+# 'GODEBUG=x509ignoreCN=0' to work around the following error.
+# >>> x509: certificate relies on legacy Common Name field, use SANs or temporarily.
 FROM traefik:v2.4 AS base
 
+ENV GODEBUG x509ignoreCN=0
+ENV DOWNSTREAM_SCHEME http
 ENV DOWNSTREAM_ADDRESS localhost
 ENV DOWNSTREAM_PORT 8081
-ENV GODEBUG x509ignoreCN=0
 
-#ADD testCert.crt /etc/testCert.crt
-#ADD testCert.rsa /etc/testCert.key
-
+ADD testCert.rsa /etc/ssl/private/testCert.rsa
 ADD testCert.crt /etc/ssl/certs/testCert.crt
 
 ADD run.sh /
 RUN chmod +x /run.sh
 
-# Listening to http connections proxying http
-FROM base AS scheme-http-http-to-http-http
+ADD downstream.yaml /etc/traefik/downstream.yaml
 
+# Listening to http connections
+FROM base AS scheme-http
 # ARG SERVER_SCHEME 
 ADD traefik-http.yaml /etc/traefik/traefik.yaml
-ADD downstream-http.yaml /etc/traefik/downstream.yaml
 
-FROM base AS scheme-https-http-to-https-http
-
+# Listening to https connections
+FROM base AS scheme-https
+# ARG SERVER_SCHEME 
 ADD traefik-https.yaml /etc/traefik/traefik.yaml
-ADD downstream-https.yaml /etc/traefik/downstream.yaml
 
-FROM scheme-${SERVER_SCHEME}-${SERVER_PROTOCOL}-to-${DOWNSTREAM_SCHEME}-${DOWNSTREAM_PROTOCOL} AS final
+FROM scheme-${SERVER_SCHEME} AS final
 
 ENTRYPOINT ["/run.sh"]
