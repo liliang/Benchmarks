@@ -1,7 +1,4 @@
 http:
-  serversTransports:
-    mytransport:
-      insecureSkipVerify: true
 
   routers:
      downstream:
