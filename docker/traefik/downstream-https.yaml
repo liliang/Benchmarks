@@ -1,4 +1,8 @@
 http:
+  serverTransports:
+    mytransport:
+      insecureSkipVerify: true
+
   routers:
      downstream:
        rule: "PathPrefix(`/`)"
