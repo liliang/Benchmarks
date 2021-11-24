@@ -4,7 +4,7 @@ ARG SERVER_SCHEME=http
 # v2.4 is the latest version that honors the environment variable
 # 'GODEBUG=x509ignoreCN=0' to work around the following error.
 # >>> x509: certificate relies on legacy Common Name field, use SANs or temporarily.
-FROM traefik:v2.4 AS base
+FROM traefik:latest AS base
 
 #ENV GODEBUG x509ignoreCN=0
 
