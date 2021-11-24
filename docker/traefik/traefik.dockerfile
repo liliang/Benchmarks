@@ -1,7 +1,7 @@
 # http, https
 ARG SERVER_SCHEME=http
 
-FROM traefik:latest AS base
+FROM traefik:v2.4 AS base
 
 ENV DOWNSTREAM_SCHEME http
 ENV DOWNSTREAM_ADDRESS localhost
