@@ -5,7 +5,6 @@ set -x
 
 # "--network host" - Better performance than the default "bridge" driver
 docker run \
-    -d \
     -it \
     --init \
     --name benchmarks-downstream \
