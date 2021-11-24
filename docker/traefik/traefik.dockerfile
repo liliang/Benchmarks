@@ -6,7 +6,8 @@ ARG SERVER_SCHEME=http
 # >>> x509: certificate relies on legacy Common Name field, use SANs or temporarily.
 FROM traefik:v2.4 AS base
 
-ENV GODEBUG x509ignoreCN=0
+#ENV GODEBUG x509ignoreCN=0
+
 ENV DOWNSTREAM_SCHEME http
 ENV DOWNSTREAM_ADDRESS localhost
 ENV DOWNSTREAM_PORT 8081
