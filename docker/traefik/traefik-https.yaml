@@ -1,5 +1,8 @@
+log:
+  level: DEBUG
+
 serversTransport:
-  insecureSkipVerify: true
+  insecureSkipVerify: false
 
 entryPoints:
   web:

@@ -7,6 +7,8 @@ ENV DOWNSTREAM_SCHEME http
 ENV DOWNSTREAM_ADDRESS localhost
 ENV DOWNSTREAM_PORT 8081
 
+ADD testCert.crt /etc/ssl/certs/testCert.crt
+
 ADD run.sh /
 RUN chmod +x /run.sh
 
