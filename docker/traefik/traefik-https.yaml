@@ -1,6 +1,3 @@
-serversTransport:
-  insecureSkipVerify: true
-
 entryPoints:
   web:
     address: :8080
@@ -10,4 +7,3 @@ entryPoints:
 providers:
   file:
     filename: /etc/traefik/downstream.yaml
-    
