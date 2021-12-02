@@ -1,3 +1,9 @@
+log:
+  level: DEBUG
+
+serversTransport:
+  insecureSkipVerify: false
+
 entryPoints:
   web:
     address: :8080
@@ -7,3 +13,4 @@ entryPoints:
 providers:
   file:
     filename: /etc/traefik/downstream.yaml
+    
